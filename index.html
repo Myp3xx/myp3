@@ -47,32 +47,26 @@
       const chance = Math.random();
 
       if (chance < 0.01) {
-        // Останавливаем обычную музыку, если играет
         music.pause();
         music.currentTime = 0;
 
-        // Останавливаем передачу, если случайно ещё не сбросилась
         transmission.pause();
         transmission.currentTime = 0;
 
-        // Скрываем изображение
         img.style.display = "none";
 
-        // Добавляем надпись в DOM
         const msg = document.createElement('div');
         msg.id = "lost-message";
         msg.textContent = "shouldn't you do something?";
         document.body.appendChild(msg);
-
-        // Воспроизводим альтернативный звук
+        
         transmission.play();
 
       } else {
-        // Сброс другого звука, если вдруг был
+
         transmission.pause();
         transmission.currentTime = 0;
 
-        // Обычное поведение
         music.currentTime = 0;
         music.play();
         img.src = "player/music.gif";
