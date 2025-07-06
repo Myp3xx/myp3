@@ -14,7 +14,7 @@
     }
     img {
       cursor: pointer;
-      max-width: 90%;
+      max-width: 100%;
       height: auto;
       transition: transform 0.2s ease;
     }
@@ -31,14 +31,10 @@
     const audio = document.getElementById('music');
 
     img.addEventListener('click', () => {
-      // Если уже играет — ничего не делаем
-      if (!audio.paused) return;
-
       audio.currentTime = 0;
       audio.play();
       img.src = "cooler2.png";
 
-      // Когда музыка закончится — вернуть картинку обратно
       audio.onended = () => {
         img.src = "cooler1.png";
       };
