@@ -7,38 +7,65 @@
     body {
       margin: 0;
       background-color: #000;
+      color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      flex-direction: column;
+      font-family: sans-serif;
     }
+
     img {
       cursor: pointer;
       image-rendering: pixelated;
-      width: 160px; 
+      width: 160px;
       height: 100px;
-      height: auto;
+    }
+
+    #lost-message {
+      display: none;
+      font-size: 2em;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
-  <img src="player/music.png" id="musicplayer" />
+  <img src="player/music.png" id="cooler" />
 
-  <audio id="audio" src="player/pepper.mp3"></audio>
+  <audio id="music" src="player/pepper.mp3"></audio>
+  <audio id="transmission" src="player/transmission.mp3"></audio>
+
+  <div id="message">LIKED IT?</div>
 
   <script>
-    const img = document.getElementById('musicplayer');
-    const audio = document.getElementById('audio');
+    const img = document.getElementById('cooler');
+    const music = document.getElementById('music');
+    const transmission = document.getElementById('transmission');
+    const lostMsg = document.getElementById('message');
 
     img.addEventListener('click', () => {
-      audio.currentTime = 0;
-      audio.play();
-      img.src = "player/music.gif";
+      const chance = Math.random();
 
-      audio.onended = () => {
-        img.src = "player/music.png";
-      };
+      if (chance < 0.5) {
+        // Воспроизвести обычную музыку и анимацию
+        music.currentTime = 0;
+        music.play();
+        img.src = "player/music.gif";
+
+        music.onended = () => {
+          img.src = "player/music.png";
+        };
+
+      } else {
+        // Воспроизвести альтернативный звук и показать сообщение
+        transmission.currentTime = 0;
+        transmission.play();
+
+        img.style.display = "none";
+        lostMsg.style.display = "block";
+      }
     });
   </script>
 
