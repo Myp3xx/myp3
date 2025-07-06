@@ -22,9 +22,9 @@
 </head>
 <body>
 
-  <img src="cooler1.png" id="cooler" />
+  <img src="player/music" id="cooler" />
 
-  <audio id="music" src="pepper.mp3"></audio>
+  <audio id="music" src="player/pepper.mp3"></audio>
 
   <script>
     const img = document.getElementById('cooler');
@@ -33,10 +33,10 @@
     img.addEventListener('click', () => {
       audio.currentTime = 0;
       audio.play();
-      img.src = "cooler2.png";
+      img.src = "player/music.gif";
 
       audio.onended = () => {
-        img.src = "cooler1.png";
+        img.src = "player/music.png";
       };
     });
   </script>
