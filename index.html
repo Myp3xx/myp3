@@ -14,21 +14,22 @@
     }
     img {
       cursor: pointer;
-      max-width: 100%;
+      image-rendering: pixelated;
+      width: 160px; 
+      height: 100px;
       height: auto;
-      transition: transform 0.2s ease;
     }
   </style>
 </head>
 <body>
 
-  <img src="player/music" id="cooler" />
+  <img src="player/music.png" id="musicplayer" />
 
-  <audio id="music" src="player/pepper.mp3"></audio>
+  <audio id="audio" src="player/pepper.mp3"></audio>
 
   <script>
-    const img = document.getElementById('cooler');
-    const audio = document.getElementById('music');
+    const img = document.getElementById('musicplayer');
+    const audio = document.getElementById('audio');
 
     img.addEventListener('click', () => {
       audio.currentTime = 0;
