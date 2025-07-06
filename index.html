@@ -23,25 +23,24 @@
 <body>
 
   <img src="cooler1.png" id="cooler" />
-  <!-- Оригинал audio можно оставить, но мы будем клонировать его -->
   <audio id="music" src="pepper.mp3" preload="auto"></audio>
 
   <script>
     const img = document.getElementById('cooler');
     const originalAudio = document.getElementById('music');
 
+    let currentAudio = null;
+
     img.addEventListener('click', () => {
-      // Клонируем аудио для немедленного воспроизведения с начала
-      const audio = originalAudio.cloneNode();
-      audio.play();
+      const newAudio = originalAudio.cloneNode();
+      newAudio.play();
+      document.body.appendChild(newAudio);
 
       img.src = "cooler2.png";
 
-      audio.onended = () => {
+      newAudio.onended = () => {
         img.src = "cooler1.png";
+        newAudio.remove();
       };
-    });
-  </script>
 
-</body>
-</html>
+      // Если есть пр
