@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title> </title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    img {
+      cursor: pointer;
+      max-width: 90%;
+      height: auto;
+      transition: transform 0.2s ease;
+    }
+    img:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+
+  <img src="cooler1.png" alt="Cooler Boss" id="cooler" />
+
+  <audio id="music" src="https://files.catbox.moe/hgpbj1.mp3"></audio>
+
+  <script>
+    const img = document.getElementById('cooler');
+    const audio = document.getElementById('music');
+
+    let toggled = false;
+
+    img.addEventListener('click', () => {
+      audio.currentTime = 0;
+      audio.play();
+
+      toggled = !toggled;
+      img.src = toggled ? "cooler2.png" : "cooler1.png";
+    });
+  </script>
+
+</body>
+</html>
