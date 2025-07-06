@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title> </title>
+  <title></title>
   <style>
     body {
       margin: 0;
@@ -18,9 +18,6 @@
       height: auto;
       transition: transform 0.2s ease;
     }
-    img:active {
-      transform: scale(0.98);
-    }
   </style>
 </head>
 <body>
@@ -33,14 +30,18 @@
     const img = document.getElementById('cooler');
     const audio = document.getElementById('music');
 
-    let toggled = false;
-
     img.addEventListener('click', () => {
+      // Если уже играет — ничего не делаем
+      if (!audio.paused) return;
+
       audio.currentTime = 0;
       audio.play();
+      img.src = "cooler2.png";
 
-      toggled = !toggled;
-      img.src = toggled ? "cooler2.png" : "cooler1.png";
+      // Когда музыка закончится — вернуть картинку обратно
+      audio.onended = () => {
+        img.src = "cooler1.png";
+      };
     });
   </script>
 
