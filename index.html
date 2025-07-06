@@ -21,10 +21,10 @@
       image-rendering: pixelated;
       width: 160px;
       height: 100px;
+      transition: transform 0.2s ease;
     }
 
     #lost-message {
-      display: none;
       font-size: 2em;
       text-align: center;
     }
@@ -37,19 +37,41 @@
   <audio id="music" src="player/pepper.mp3"></audio>
   <audio id="transmission" src="player/transmission.mp3"></audio>
 
-  <div id="message">LIKED IT?</div>
-
   <script>
     const img = document.getElementById('cooler');
     const music = document.getElementById('music');
     const transmission = document.getElementById('transmission');
-    const lostMsg = document.getElementById('message');
 
     img.addEventListener('click', () => {
       const chance = Math.random();
 
-      if (chance < 0.5) {
-        // Воспроизвести обычную музыку и анимацию
+      if (chance < 0.05) {
+        // Останавливаем обычную музыку, если играет
+        music.pause();
+        music.currentTime = 0;
+
+        // Останавливаем передачу, если случайно ещё не сбросилась
+        transmission.pause();
+        transmission.currentTime = 0;
+
+        // Скрываем изображение
+        img.style.display = "none";
+
+        // Добавляем надпись в DOM
+        const msg = document.createElement('div');
+        msg.id = "lost-message";
+        msg.textContent = "shouldn't you do something?";
+        document.body.appendChild(msg);
+
+        // Воспроизводим альтернативный звук
+        transmission.play();
+
+      } else {
+        // Сброс другого звука, если вдруг был
+        transmission.pause();
+        transmission.currentTime = 0;
+
+        // Обычное поведение
         music.currentTime = 0;
         music.play();
         img.src = "player/music.gif";
@@ -57,14 +79,6 @@
         music.onended = () => {
           img.src = "player/music.png";
         };
-
-      } else {
-        // Воспроизвести альтернативный звук и показать сообщение
-        transmission.currentTime = 0;
-        transmission.play();
-
-        img.style.display = "none";
-        lostMsg.style.display = "block";
       }
     });
   </script>
