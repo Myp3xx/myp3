@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title></title>
+  <title>...</title>
   <style>
     body {
       margin: 0;
@@ -14,7 +14,7 @@
     }
     img {
       cursor: pointer;
-      max-width: 90%;
+      max-width: 100%;
       height: auto;
       transition: transform 0.2s ease;
     }
@@ -23,24 +23,23 @@
 <body>
 
   <img src="cooler1.png" id="cooler" />
-  <audio id="music" src="pepper.mp3" preload="auto"></audio>
+
+  <audio id="music" src="pepper.wav"></audio>
 
   <script>
     const img = document.getElementById('cooler');
-    const originalAudio = document.getElementById('music');
-
-    let currentAudio = null;
+    const audio = document.getElementById('music');
 
     img.addEventListener('click', () => {
-      const newAudio = originalAudio.cloneNode();
-      newAudio.play();
-      document.body.appendChild(newAudio);
-
+      audio.currentTime = 0;
+      audio.play();
       img.src = "cooler2.png";
 
-      newAudio.onended = () => {
+      audio.onended = () => {
         img.src = "cooler1.png";
-        newAudio.remove();
       };
+    });
+  </script>
 
-      // Если есть пр
+</body>
+</html>
